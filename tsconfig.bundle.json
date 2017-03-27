@@ -1,14 +1,15 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "system",
         "moduleResolution": "node",
         "target": "es5",
+        "noImplicitAny": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "inlineSourceMap": true,
-        "declaration": true,
-        "outDir": "",
-        "rootDir": "./src/ng2-bs4-modal"
+        "declaration": false,
+        "rootDir": "./src",
+        "outFile": "./bundles/ng2-bs4-modal.js"
     },
     "exclude": [
         "node_modules",
