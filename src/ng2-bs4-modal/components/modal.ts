@@ -27,6 +27,9 @@ export class ModalComponent implements OnDestroy {
     @Input() backdrop: string | boolean = true;
     @Input() keyboard: boolean = true;
     @Input() size: string;
+    @Input() onBeforeClose: Function;
+    @Input() onBeforeDismiss: Function;
+    @Input() onBeforeOpen: Function;
 
     @Output() onClose: EventEmitter<any> = new EventEmitter(false);
     @Output() onDismiss: EventEmitter<any> = new EventEmitter(false);
@@ -55,20 +58,48 @@ export class ModalComponent implements OnDestroy {
     }
 
     open(size?: string): Promise<void> {
-        if (ModalSize.validSize(size)) this.overrideSize = size;
-        return this.instance.open().then(() => {
-            this.visible = this.instance.visible;
-        });
+        let result: boolean = true;
+        if (this.onBeforeOpen) {
+            result = this.onBeforeOpen();
+        }
+
+        if (result) {
+            if (ModalSize.validSize(size)) this.overrideSize = size;
+            return this.instance.open().then(() => {
+                this.visible = this.instance.visible;
+            });
+        } else {
+            return new Promise<void>((resolve, reject) => resolve());
+        }
     }
 
     close(): Promise<void> {
-        return this.instance.close().then(() => {
-            this.onClose.emit(undefined);
-        });
+        let result: boolean = true;
+        if (this.onBeforeClose) {
+            result = this.onBeforeClose();
+        }
+
+        if (result) {
+            return this.instance.close().then(() => {
+                this.onClose.emit(undefined);
+            });
+        } else {
+            return new Promise<void>((resolve, reject) => resolve());
+        }
+        
     }
 
     dismiss(): Promise<void> {
-        return this.instance.dismiss();
+        let result: boolean = true;
+        if (this.onBeforeOpen) {
+            result = this.onBeforeOpen();
+        }
+
+        if (result) {
+            return this.instance.dismiss();
+        } else {
+            return new Promise<void>((resolve, reject) => resolve());
+        }
     }
 
     public isSmall() {

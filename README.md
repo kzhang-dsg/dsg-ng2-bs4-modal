@@ -1,3 +1,12 @@
+# ng2-bs4-modal with AoT support
+
+Added AoT support
+
+Added onBeforeClose, onBeforeDismiss, and onBeforeOpen callback inputs. those callbacks are called before closing/dismiss/opening of the modal. if the callback returns true, then the modal will be closes/dismissed/opened. If the call back retuens false, no action will be performed.
+
+# Below are the origional README from [xdan/datetimepicker](https://github.com/xdan/datetimepicker)
+
+
 # ng2-bs4-modal [![npm version](https://badge.fury.io/js/ng2-bs3-modal.svg)](http://badge.fury.io/js/ng2-bs3-modal) [![npm downloads](https://img.shields.io/npm/dm/ng2-bs3-modal.svg)](https://npmjs.org/ng2-bs3-modal) [![Build Status](https://travis-ci.org/dougludlow/ng2-bs3-modal.svg?branch=master)](https://travis-ci.org/dougludlow/ng2-bs3-modal)
 Angular2 Bootstrap4 Modal Component
 
