@@ -91,8 +91,8 @@ export class ModalComponent implements OnDestroy {
 
     dismiss(): Promise<void> {
         let result: boolean = true;
-        if (this.onBeforeOpen) {
-            result = this.onBeforeOpen();
+        if (this.onBeforeDismiss) {
+            result = this.onBeforeDismiss();
         }
 
         if (result) {
