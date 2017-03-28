@@ -89,7 +89,8 @@ export class ModalComponent implements OnDestroy {
         
     }
 
-    dismiss(): Promise<void> {
+    dismiss(event): Promise<void> {
+        event.preventDefault();
         let result: boolean = true;
         if (this.onBeforeDismiss) {
             result = this.onBeforeDismiss();

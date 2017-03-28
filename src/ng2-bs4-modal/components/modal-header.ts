@@ -6,7 +6,7 @@ import { ModalComponent } from './modal';
     template: `
         <div class="modal-header" [ngClass]="headerClasses">
             <ng-content></ng-content>
-            <button *ngIf="showClose" type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+            <button *ngIf="showClose" type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss($event)">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
